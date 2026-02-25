@@ -12,7 +12,8 @@ import {
     MessageSquare,
     AlertCircle,
     CheckCircle2,
-    RefreshCw
+    RefreshCw,
+    X
 } from 'lucide-react';
 import { Button } from '../../components/ui/Button';
 import { Badge } from '../../components/ui/Badge';
@@ -63,7 +64,7 @@ export default function CodingAssessmentPage() {
 
     const submitSolution = () => {
         // Confirm submission logic
-        navigate('/assessments');
+        navigate('/dashboard/assessments');
     };
 
     return (

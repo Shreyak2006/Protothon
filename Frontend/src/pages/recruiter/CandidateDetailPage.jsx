@@ -24,9 +24,15 @@ import {
 } from 'lucide-react';
 import { Button } from '../../components/ui/Button';
 import { Badge } from '../../components/ui/Badge';
+import { Card } from '../../components/ui/Card';
 import { Progress } from '../../components/ui/Progress';
 import { cn } from '../../lib/utils';
 import { useNavigate, useParams } from 'react-router-dom';
+
+const colorMap = {
+    'emerald-500': 'text-emerald-500',
+    'primary': 'text-[hsl(var(--primary))]',
+};
 
 export default function CandidateDetailPage() {
     const { id } = useParams();
@@ -213,7 +219,7 @@ export default function CandidateDetailPage() {
                             ].map((x, i) => (
                                 <div key={i} className="flex justify-between items-center group cursor-default">
                                     <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">{x.l}</span>
-                                    <span className={cn("text-xs font-black", `text-${x.c}`)}>{x.v}</span>
+                                    <span className={cn("text-xs font-black", colorMap[x.c] || 'text-[hsl(var(--foreground))]')}>{x.v}</span>
                                 </div>
                             ))}
                         </div>
@@ -250,7 +256,7 @@ export default function CandidateDetailPage() {
                         <p className="text-muted-foreground text-sm mb-10 leading-relaxed">This will trigger the next stage of the AI-governed placement pipeline and notify the candidate.</p>
                         <div className="flex gap-4">
                             <Button variant="outline" className="flex-1 h-14 rounded-2xl font-bold uppercase text-xs" onClick={() => setAction(null)}>Cancel</Button>
-                            <Button className={cn("flex-[1.5] h-14 rounded-2xl font-black uppercase text-xs tracking-widest", action === 'shortlist' ? "bg-emerald-600" : "bg-rose-600")} onClick={() => navigate('/recruiter')}>Confirm Action</Button>
+                            <Button className={cn("flex-[1.5] h-14 rounded-2xl font-black uppercase text-xs tracking-widest", action === 'shortlist' ? "bg-emerald-600" : "bg-rose-600")} onClick={() => navigate('/dashboard/recruiter')}>Confirm Action</Button>
                         </div>
                     </motion.div>
                 </div>

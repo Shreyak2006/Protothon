@@ -39,15 +39,15 @@ export default function NotFoundPage() {
 
                 <div className="flex flex-col gap-4">
                     <Button
-                        onClick={() => navigate('/')}
+                        onClick={() => navigate('/dashboard')}
                         className="h-14 rounded-2xl text-md font-black uppercase tracking-[0.2em] shadow-2xl shadow-primary/20"
                     >
-                        <Home className="mr-3 w-5 h-5" /> Back to Base
+                        <Home className="mr-3 w-5 h-5" /> Back to Dashboard
                     </Button>
                     <div className="flex items-center gap-4 text-xs font-bold text-muted-foreground justify-center uppercase tracking-widest pt-4">
-                        <span className="hover:text-primary cursor-pointer transition-colors" onClick={() => navigate('/support')}>Support</span>
+                        <span className="hover:text-primary cursor-pointer transition-colors" onClick={() => navigate('/dashboard')}>Dashboard</span>
                         <div className="w-1 h-1 rounded-full bg-white/20" />
-                        <span className="hover:text-primary cursor-pointer transition-colors" onClick={() => navigate('/status')}>Status</span>
+                        <span className="hover:text-primary cursor-pointer transition-colors" onClick={() => navigate('/login')}>Login</span>
                     </div>
                 </div>
             </motion.div>

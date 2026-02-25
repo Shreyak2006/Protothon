@@ -64,7 +64,7 @@ export default function ProfileSetupPage() {
 
     const handleComplete = () => {
         // Final submission logic
-        navigate('/');
+        navigate('/dashboard');
     };
 
     return (

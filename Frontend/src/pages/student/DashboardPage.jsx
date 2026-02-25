@@ -50,10 +50,10 @@ export default function DashboardPage() {
 
                 <AnimeReveal preset="fadeUp" delay={400}>
                     <div className="flex gap-3">
-                        <Button variant="outline" className="rounded-2xl h-12 px-6 border-white/10" onClick={() => navigate('/profile')}>
+                        <Button variant="outline" className="rounded-2xl h-12 px-6 border-white/10" onClick={() => navigate('/dashboard/profile')}>
                             <FileText className="w-4 h-4 mr-2" /> Resume
                         </Button>
-                        <Button className="rounded-2xl h-12 px-8 shadow-2xl shadow-primary/20" onClick={() => navigate('/job-matching')}>
+                        <Button className="rounded-2xl h-12 px-8 shadow-2xl shadow-primary/20" onClick={() => navigate('/dashboard/job-matching')}>
                             <Sparkles className="w-4 h-4 mr-2" /> Match AI
                         </Button>
                     </div>
@@ -63,17 +63,17 @@ export default function DashboardPage() {
             {/* Quick Stats Grid — Staggered Reveal + 3D Tilt */}
             <AnimeReveal cascade preset="zoomIn" delay={200} className="grid grid-cols-2 lg:grid-cols-4 gap-6">
                 {[
-                    { label: 'Applied', value: appliedCount, icon: Briefcase, color: 'primary' },
-                    { label: 'Shortlisted', value: shortlistedCount, icon: Target, color: 'warning' },
-                    { label: 'Interviews', value: interviewCount, icon: Calendar, color: 'accent' },
-                    { label: 'Offers', value: offerCount, icon: Zap, color: 'success' },
+                    { label: 'Applied', value: appliedCount, icon: Briefcase, bgClass: 'bg-primary/10 border-primary/20', iconClass: 'text-primary' },
+                    { label: 'Shortlisted', value: shortlistedCount, icon: Target, bgClass: 'bg-amber-500/10 border-amber-500/20', iconClass: 'text-amber-500' },
+                    { label: 'Interviews', value: interviewCount, icon: Calendar, bgClass: 'bg-violet-500/10 border-violet-500/20', iconClass: 'text-violet-500' },
+                    { label: 'Offers', value: offerCount, icon: Zap, bgClass: 'bg-emerald-500/10 border-emerald-500/20', iconClass: 'text-emerald-500' },
                 ].map((stat) => (
                     <AnimeTilt key={stat.label} className="w-full">
-                        <Card className="bg-card/40 border-border hover:bg-card/60 transition-colors cursor-pointer group" onClick={() => navigate('/applications')}>
+                        <Card className="bg-card/40 border-border hover:bg-card/60 transition-colors cursor-pointer group" onClick={() => navigate('/dashboard/applications')}>
                             <CardContent className="p-6">
                                 <div className="flex items-center justify-between mb-4">
-                                    <div className={`p-3 rounded-2xl bg-${stat.color}/10 border border-${stat.color}/20`}>
-                                        <stat.icon className={`w-5 h-5 text-${stat.color}`} />
+                                    <div className={`p-3 rounded-2xl border ${stat.bgClass}`}>
+                                        <stat.icon className={`w-5 h-5 ${stat.iconClass}`} />
                                     </div>
                                     <ArrowUpRight className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-1 group-hover:-translate-y-1" />
                                 </div>
@@ -150,7 +150,7 @@ export default function DashboardPage() {
                                         <CardTitle className="flex items-center gap-3 text-lg font-black italic">
                                             <Calendar className="w-5 h-5 text-primary" /> Upcoming
                                         </CardTitle>
-                                        <Button variant="ghost" size="sm" className="text-[10px] font-black uppercase tracking-widest" onClick={() => navigate('/job-matching')}>
+                                        <Button variant="ghost" size="sm" className="text-[10px] font-black uppercase tracking-widest" onClick={() => navigate('/dashboard/job-matching')}>
                                             Full List <ChevronRight className="ml-1 w-4 h-4" />
                                         </Button>
                                     </div>

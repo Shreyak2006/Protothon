@@ -37,6 +37,29 @@ const typeIcons = {
     Mixed: BarChart3
 };
 
+const statColorMap = {
+    primary: {
+        bg: 'bg-[hsl(var(--primary)/0.1)]',
+        text: 'text-[hsl(var(--primary))]',
+        glow: 'bg-[hsl(var(--primary)/0.05)]',
+    },
+    'emerald-500': {
+        bg: 'bg-emerald-500/10',
+        text: 'text-emerald-500',
+        glow: 'bg-emerald-500/5',
+    },
+    'amber-500': {
+        bg: 'bg-amber-500/10',
+        text: 'text-amber-500',
+        glow: 'bg-amber-500/5',
+    },
+    'blue-500': {
+        bg: 'bg-blue-500/10',
+        text: 'text-blue-500',
+        glow: 'bg-blue-500/5',
+    },
+};
+
 export default function AssessmentPage() {
     const navigate = useNavigate();
     const [selectedTest, setSelectedTest] = useState(null);
@@ -90,21 +113,24 @@ export default function AssessmentPage() {
                     { label: 'Completed', val: completed.length, icon: CheckCircle, color: 'emerald-500' },
                     { label: 'Avg Rating', val: '92%', icon: Trophy, color: 'amber-500' },
                     { label: 'Global Rank', val: '#128', icon: BarChart3, color: 'blue-500' }
-                ].map((stat, i) => (
-                    <Card key={i} className="bg-card/50 border-border hover:border-primary/30 transition-all duration-500 group relative overflow-hidden">
-                        <div className={`absolute top-0 right-0 w-24 h-24 bg-${stat.color}/5 blur-3xl rounded-full`} />
-                        <CardContent className="p-6">
-                            <div className="flex items-center justify-between mb-4">
-                                <div className={cn("p-3 rounded-2xl", `bg-${stat.color}/10`)}>
-                                    <stat.icon className={cn("w-5 h-5", `text-${stat.color}`)} />
+                ].map((stat, i) => {
+                    const colors = statColorMap[stat.color] || statColorMap.primary;
+                    return (
+                        <Card key={i} className="bg-card/50 border-border hover:border-primary/30 transition-all duration-500 group relative overflow-hidden">
+                            <div className={`absolute top-0 right-0 w-24 h-24 ${colors.glow} blur-3xl rounded-full`} />
+                            <CardContent className="p-6">
+                                <div className="flex items-center justify-between mb-4">
+                                    <div className={cn("p-3 rounded-2xl", colors.bg)}>
+                                        <stat.icon className={cn("w-5 h-5", colors.text)} />
+                                    </div>
+                                    <ArrowUpRight className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
                                 </div>
-                                <ArrowUpRight className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-                            </div>
-                            <p className="text-3xl font-extrabold text-white mb-1">{stat.val}</p>
-                            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">{stat.label}</p>
-                        </CardContent>
-                    </Card>
-                ))}
+                                <p className="text-3xl font-extrabold text-white mb-1">{stat.val}</p>
+                                <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">{stat.label}</p>
+                            </CardContent>
+                        </Card>
+                    );
+                })}
             </div>
 
             {/* Main Content Area */}

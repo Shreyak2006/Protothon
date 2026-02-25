@@ -55,8 +55,14 @@ function PageLoader() {
   );
 }
 
-function ProtectedRoute({ children }) {
-  // Dummy auth: always allow access
+function ProtectedRoute({ children, allowedRoles }) {
+  const { user } = useAuthStore();
+  // If allowedRoles is specified, enforce role-based access
+  if (allowedRoles && allowedRoles.length > 0) {
+    if (!user || !allowedRoles.includes(user.role)) {
+      return <Navigate to="/dashboard" replace />;
+    }
+  }
   return children;
 }
 

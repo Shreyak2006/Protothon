@@ -28,9 +28,14 @@ export default function LoginPage() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        await login(email, password, role);
-        setLoading(false);
-        navigate('/');
+        try {
+            await login(email, password, role);
+            navigate('/dashboard');
+        } catch (err) {
+            console.error('[Login] Error:', err);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (

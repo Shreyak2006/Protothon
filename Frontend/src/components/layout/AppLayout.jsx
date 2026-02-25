@@ -21,6 +21,9 @@ export default function AppLayout() {
 
     return (
         <div className="min-h-screen bg-[hsl(var(--background))] overflow-x-hidden">
+            <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-primary focus:text-white focus:rounded-br-lg">
+                Skip to main content
+            </a>
             <CinematicBackground />
             <ScrollProgress />
             <Sidebar />
@@ -28,6 +31,7 @@ export default function AppLayout() {
             <CommandPalette />
 
             <main
+                id="main-content"
                 className={cn(
                     'pt-[var(--topbar-height)] min-h-screen transition-all duration-300',
                     !isMobile && (sidebarCollapsed ? 'ml-[var(--sidebar-collapsed)]' : 'ml-[var(--sidebar-width)]'),

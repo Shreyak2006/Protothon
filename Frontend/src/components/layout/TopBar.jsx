@@ -38,6 +38,7 @@ export default function TopBar() {
 
     return (
         <header
+            role="banner"
             className={cn(
                 'fixed top-0 right-0 h-20 bg-card/60 backdrop-blur-xl border-b border-white/5 z-20 flex items-center gap-4 px-6 transition-all duration-500',
                 !isMobile && (sidebarCollapsed ? 'left-24' : 'left-72'),
@@ -48,6 +49,7 @@ export default function TopBar() {
             {isMobile && (
                 <button
                     onClick={() => setMobileMenuOpen(true)}
+                    aria-label="Open navigation menu"
                     className="p-3 rounded-2xl hover:bg-white/5 transition-colors cursor-pointer text-white"
                 >
                     <Menu className="w-6 h-6" />
@@ -57,6 +59,7 @@ export default function TopBar() {
             {/* Neural Search Node */}
             <button
                 onClick={() => setCommandPaletteOpen(true)}
+                aria-label="Open command palette (Ctrl+K)"
                 className="flex items-center gap-3 h-12 px-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 text-muted-foreground text-sm transition-all flex-1 max-w-md cursor-pointer group"
             >
                 <Search className="w-4 h-4 shrink-0 group-hover:text-primary transition-colors" />
@@ -70,6 +73,7 @@ export default function TopBar() {
                 {/* Theme toggle */}
                 <button
                     onClick={() => setTheme(nextTheme)}
+                    aria-label={`Switch to ${nextTheme} theme`}
                     className="p-3 rounded-2xl hover:bg-white/5 transition-colors text-muted-foreground hover:text-white cursor-pointer"
                 >
                     {themeIcon}
@@ -77,7 +81,8 @@ export default function TopBar() {
 
                 {/* Notifications Node */}
                 <button
-                    onClick={() => navigate('/notifications')}
+                    onClick={() => navigate('/dashboard/notifications')}
+                    aria-label={`Notifications${unreadCount > 0 ? `, ${unreadCount} unread` : ''}`}
                     className="relative p-3 rounded-2xl hover:bg-white/5 transition-colors text-muted-foreground hover:text-white cursor-pointer"
                 >
                     <Bell className="w-5 h-5" />
@@ -94,6 +99,9 @@ export default function TopBar() {
                 <div className="relative" ref={profileRef}>
                     <button
                         onClick={() => setProfileOpen(!profileOpen)}
+                        aria-expanded={profileOpen}
+                        aria-haspopup="true"
+                        aria-label="User profile menu"
                         className="flex items-center gap-3 p-2 pr-4 rounded-[1.25rem] hover:bg-white/5 transition-all cursor-pointer group"
                     >
                         <div className="relative">
@@ -129,13 +137,13 @@ export default function TopBar() {
                                 </div>
                                 <div className="p-2">
                                     <button
-                                        onClick={() => { navigate('/profile'); setProfileOpen(false); }}
+                                        onClick={() => { navigate('/dashboard/profile'); setProfileOpen(false); }}
                                         className="w-full flex items-center gap-3 px-4 py-3 text-xs font-black uppercase tracking-widest text-muted-foreground hover:text-white hover:bg-white/5 rounded-2xl transition-all cursor-pointer"
                                     >
                                         <User className="w-4 h-4 text-primary" /> My Identity
                                     </button>
                                     <button
-                                        onClick={() => { navigate('/settings'); setProfileOpen(false); }}
+                                        onClick={() => { navigate('/dashboard/settings'); setProfileOpen(false); }}
                                         className="w-full flex items-center gap-3 px-4 py-3 text-xs font-black uppercase tracking-widest text-muted-foreground hover:text-white hover:bg-white/5 rounded-2xl transition-all cursor-pointer"
                                     >
                                         <Settings className="w-4 h-4 text-primary" /> Settings

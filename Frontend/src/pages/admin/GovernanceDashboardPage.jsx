@@ -22,8 +22,8 @@ export default function GovernanceDashboardPage() {
                     <p className="text-[hsl(var(--muted-foreground))] mt-1">Placement oversight and management</p>
                 </div>
                 <div className="flex gap-2">
-                    <Button variant="outline" size="sm" onClick={() => navigate('/policy')}><Settings className="w-4 h-4" /> Policy Config</Button>
-                    <Button size="sm" onClick={() => navigate('/analytics')}><TrendingUp className="w-4 h-4" /> Analytics</Button>
+                    <Button variant="outline" size="sm" onClick={() => navigate('/dashboard/policy')}><Settings className="w-4 h-4" /> Policy Config</Button>
+                    <Button size="sm" onClick={() => navigate('/dashboard/analytics')}><TrendingUp className="w-4 h-4" /> Analytics</Button>
                 </div>
             </motion.div>
 

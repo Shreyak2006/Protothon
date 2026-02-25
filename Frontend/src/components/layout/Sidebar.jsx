@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { cn } from '../../lib/utils';
 import { useUIStore } from '../../stores/uiStore';
@@ -12,28 +12,28 @@ import {
 } from 'lucide-react';
 
 const studentNav = [
-    { label: 'Dashboard', path: '/', icon: LayoutDashboard },
-    { label: 'Profile & Resume', path: '/profile', icon: User },
-    { label: 'Skill Intelligence', path: '/skills', icon: Brain },
-    { label: 'Job Matching', path: '/job-matching', icon: Briefcase },
-    { label: 'Applications', path: '/applications', icon: ClipboardList },
-    { label: 'Assessments', path: '/assessments', icon: FileText },
+    { label: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
+    { label: 'Profile & Resume', path: '/dashboard/profile', icon: User },
+    { label: 'Skill Intelligence', path: '/dashboard/skills', icon: Brain },
+    { label: 'Job Matching', path: '/dashboard/job-matching', icon: Briefcase },
+    { label: 'Applications', path: '/dashboard/applications', icon: ClipboardList },
+    { label: 'Assessments', path: '/dashboard/assessments', icon: FileText },
 ];
 
 const recruiterNav = [
-    { label: 'Recruiter Portal', path: '/recruiter', icon: Building2 },
-    { label: 'Analytics', path: '/analytics', icon: BarChart3 },
+    { label: 'Recruiter Portal', path: '/dashboard/recruiter', icon: Building2 },
+    { label: 'Analytics', path: '/dashboard/analytics', icon: BarChart3 },
 ];
 
 const adminNav = [
-    { label: 'Governance', path: '/admin', icon: Shield },
-    { label: 'Policy Engine', path: '/policy', icon: Scale },
-    { label: 'Analytics', path: '/analytics', icon: BarChart3 },
+    { label: 'Governance', path: '/dashboard/admin', icon: Shield },
+    { label: 'Policy Engine', path: '/dashboard/policy', icon: Scale },
+    { label: 'Analytics', path: '/dashboard/analytics', icon: BarChart3 },
 ];
 
 const commonNav = [
-    { label: 'Notifications', path: '/notifications', icon: Bell },
-    { label: 'Settings', path: '/settings', icon: Settings },
+    { label: 'Notifications', path: '/dashboard/notifications', icon: Bell },
+    { label: 'Settings', path: '/dashboard/settings', icon: Settings },
 ];
 
 export default function Sidebar() {
@@ -41,54 +41,9 @@ export default function Sidebar() {
     const { user } = useAuthStore();
     const isMobile = useMobile();
     const location = useLocation();
-    const sidebarRef = useRef(null);
-    const overlayRef = useRef(null);
 
     const role = user?.role || 'student';
     const mainNav = role === 'admin' ? adminNav : role === 'recruiter' ? recruiterNav : studentNav;
-
-    // Handle Mobile Transitions manually with Anime
-    useEffect(() => {
-        if (isMobile) {
-            if (mobileMenuOpen) {
-                anime({
-                    targets: overlayRef.current,
-                    opacity: [0, 1],
-                    duration: 400,
-                    easing: 'easeOutQuad',
-                });
-                anime({
-                    targets: sidebarRef.current,
-                    translateX: [-280, 0],
-                    duration: 600,
-                    easing: 'easeOutElastic(1, .8)',
-                });
-            } else {
-                // When closing, we might need a state to delay the unmount 
-                // but let's assume the state change is handled by UIStore
-            }
-        }
-    }, [mobileMenuOpen, isMobile]);
-
-    const handleHover = (e, isActive) => {
-        if (isActive) return;
-        anime({
-            targets: e.currentTarget,
-            translateX: 5,
-            duration: 300,
-            easing: 'easeOutQuad'
-        });
-    };
-
-    const handleHoverOut = (e, isActive) => {
-        if (isActive) return;
-        anime({
-            targets: e.currentTarget,
-            translateX: 0,
-            duration: 300,
-            easing: 'easeOutQuad'
-        });
-    };
 
     const renderLink = (item) => {
         const Icon = item.icon;
@@ -98,13 +53,11 @@ export default function Sidebar() {
             <NavLink
                 key={item.path}
                 to={item.path}
-                onMouseEnter={(e) => handleHover(e, isActive)}
-                onMouseLeave={(e) => handleHoverOut(e, isActive)}
                 onClick={() => isMobile && setMobileMenuOpen(false)}
                 className={cn(
-                    'group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 relative',
+                    'group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 relative hover:translate-x-1',
                     isActive
-                        ? 'bg-primary/10 text-primary border border-primary/10'
+                        ? 'bg-primary/10 text-primary border border-primary/10 hover:translate-x-0'
                         : 'text-muted-foreground hover:text-white hover:bg-white/5',
                     sidebarCollapsed && !isMobile && 'justify-center px-2'
                 )}

@@ -13,9 +13,10 @@ export const AnimeCounter = ({ value, duration = 2, suffix = "" }) => {
     }, [value, spring]);
 
     useEffect(() => {
-        return spring.onChange((latest) => {
+        const unsubscribe = spring.on("change", (latest) => {
             setDisplayValue(Math.floor(latest));
         });
+        return unsubscribe;
     }, [spring]);
 
     return <span>{displayValue}{suffix}</span>;

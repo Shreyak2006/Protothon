@@ -286,7 +286,7 @@ export default function TestPlayerPage() {
                                     <Button variant="outline" className="h-14 rounded-2xl" onClick={() => setShowConfirm(false)}>
                                         Continue Test
                                     </Button>
-                                    <Button className="h-14 rounded-2xl bg-emerald-600 hover:bg-emerald-700 shadow-xl shadow-emerald-500/20" onClick={() => navigate('/assessments')}>
+                                    <Button className="h-14 rounded-2xl bg-emerald-600 hover:bg-emerald-700 shadow-xl shadow-emerald-500/20" onClick={() => navigate('/dashboard/assessments')}>
                                         Submit Now
                                     </Button>
                                 </div>

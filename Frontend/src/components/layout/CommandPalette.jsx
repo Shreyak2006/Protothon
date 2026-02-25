@@ -9,18 +9,18 @@ import {
 } from 'lucide-react';
 
 const allCommands = [
-    { id: 'dashboard', label: 'Go to Dashboard', icon: <LayoutDashboard className="w-4 h-4" />, path: '/', category: 'Navigation' },
-    { id: 'profile', label: 'Profile & Resume', icon: <User className="w-4 h-4" />, path: '/profile', category: 'Navigation' },
-    { id: 'skills', label: 'Skill Intelligence', icon: <Brain className="w-4 h-4" />, path: '/skills', category: 'Navigation' },
-    { id: 'jobs', label: 'Job Matching', icon: <Briefcase className="w-4 h-4" />, path: '/job-matching', category: 'Navigation' },
-    { id: 'applications', label: 'Application Tracker', icon: <ClipboardList className="w-4 h-4" />, path: '/applications', category: 'Navigation' },
-    { id: 'assessments', label: 'Assessments', icon: <FileText className="w-4 h-4" />, path: '/assessments', category: 'Navigation' },
-    { id: 'recruiter', label: 'Recruiter Portal', icon: <Building2 className="w-4 h-4" />, path: '/recruiter', category: 'Navigation' },
-    { id: 'admin', label: 'Admin Dashboard', icon: <Shield className="w-4 h-4" />, path: '/admin', category: 'Navigation' },
-    { id: 'policy', label: 'Policy Engine', icon: <Scale className="w-4 h-4" />, path: '/policy', category: 'Navigation' },
-    { id: 'analytics', label: 'Analytics & Reports', icon: <BarChart3 className="w-4 h-4" />, path: '/analytics', category: 'Navigation' },
-    { id: 'notifications', label: 'Notifications', icon: <Bell className="w-4 h-4" />, path: '/notifications', category: 'Navigation' },
-    { id: 'settings', label: 'Settings', icon: <Settings className="w-4 h-4" />, path: '/settings', category: 'Navigation' },
+    { id: 'dashboard', label: 'Go to Dashboard', icon: <LayoutDashboard className="w-4 h-4" />, path: '/dashboard', category: 'Navigation' },
+    { id: 'profile', label: 'Profile & Resume', icon: <User className="w-4 h-4" />, path: '/dashboard/profile', category: 'Navigation' },
+    { id: 'skills', label: 'Skill Intelligence', icon: <Brain className="w-4 h-4" />, path: '/dashboard/skills', category: 'Navigation' },
+    { id: 'jobs', label: 'Job Matching', icon: <Briefcase className="w-4 h-4" />, path: '/dashboard/job-matching', category: 'Navigation' },
+    { id: 'applications', label: 'Application Tracker', icon: <ClipboardList className="w-4 h-4" />, path: '/dashboard/applications', category: 'Navigation' },
+    { id: 'assessments', label: 'Assessments', icon: <FileText className="w-4 h-4" />, path: '/dashboard/assessments', category: 'Navigation' },
+    { id: 'recruiter', label: 'Recruiter Portal', icon: <Building2 className="w-4 h-4" />, path: '/dashboard/recruiter', category: 'Navigation' },
+    { id: 'admin', label: 'Admin Dashboard', icon: <Shield className="w-4 h-4" />, path: '/dashboard/admin', category: 'Navigation' },
+    { id: 'policy', label: 'Policy Engine', icon: <Scale className="w-4 h-4" />, path: '/dashboard/policy', category: 'Navigation' },
+    { id: 'analytics', label: 'Analytics & Reports', icon: <BarChart3 className="w-4 h-4" />, path: '/dashboard/analytics', category: 'Navigation' },
+    { id: 'notifications', label: 'Notifications', icon: <Bell className="w-4 h-4" />, path: '/dashboard/notifications', category: 'Navigation' },
+    { id: 'settings', label: 'Settings', icon: <Settings className="w-4 h-4" />, path: '/dashboard/settings', category: 'Navigation' },
 ];
 
 export default function CommandPalette() {

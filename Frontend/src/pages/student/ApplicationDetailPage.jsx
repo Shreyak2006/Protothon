@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { Button } from '../../components/ui/Button';
 import { Badge } from '../../components/ui/Badge';
+import { Card, CardContent } from '../../components/ui/Card';
 import { Progress } from '../../components/ui/Progress';
 import { cn } from '../../lib/utils';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -113,7 +114,7 @@ export default function ApplicationDetailPage() {
                             <div className="w-1.5 h-1.5 rounded-full bg-white" /> Activity Log
                         </h2>
                         <div className="space-y-4">
-                            {TIMELINE.reverse().map((item, i) => (
+                            {[...TIMELINE].reverse().map((item, i) => (
                                 <div key={i} className={cn("p-6 rounded-3xl border transition-all", item.status === 'active' ? "bg-primary/5 border-primary/20" : "bg-card/30 border-border opacity-70")}>
                                     <div className="flex items-start justify-between mb-2">
                                         <h3 className="font-black text-white italic tracking-tight">{item.stage}</h3>

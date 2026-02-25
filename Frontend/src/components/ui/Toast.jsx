@@ -42,7 +42,7 @@ export function ToastProvider({ children }) {
     return (
         <ToastContext.Provider value={{ addToast }}>
             {children}
-            <div className="fixed bottom-4 right-4 z-[100] flex flex-col gap-2 max-w-sm w-full pointer-events-none">
+            <div role="status" aria-live="polite" className="fixed bottom-4 right-4 z-[100] flex flex-col gap-2 max-w-sm w-full pointer-events-none">
                 {toasts.map((toast) => (
                     <div
                         key={toast.id}
@@ -59,6 +59,7 @@ export function ToastProvider({ children }) {
                         </div>
                         <button
                             onClick={() => removeToast(toast.id)}
+                            aria-label="Dismiss notification"
                             className="text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))] transition-colors cursor-pointer"
                         >
                             <X className="w-4 h-4" />
